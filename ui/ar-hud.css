@@ -1,0 +1,230 @@
+/* ═══════════════════════════════════════════════════════════════
+   ANANTAM PIT DISPLAY — AR HUD STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+.ar-hud-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: var(--z-hud);
+    font-family: var(--font-technical);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* ── Common Bracket Style ── */
+.ar-bracket-box {
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: var(--space-sm) var(--space-md);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-pure-white);
+    transition: opacity var(--dur-reveal) var(--ease-reveal), transform var(--dur-reveal) var(--ease-reveal);
+}
+
+.ar-bracket-box::before,
+.ar-bracket-box::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--color-anantam-red);
+    border-style: solid;
+    pointer-events: none;
+}
+
+.ar-bracket-box::before {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+}
+
+.ar-bracket-box::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+}
+
+/* ── Top Left: Tracking Status ── */
+.ar-status-badge {
+    position: absolute;
+    top: var(--space-xl);
+    left: var(--space-xl);
+}
+
+.ar-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-hud-dim);
+}
+
+.ar-status-dot.active {
+    background-color: #00FF66;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+    animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.ar-status-dot.calibrating {
+    background-color: #FFAA00;
+}
+
+.ar-confidence-bar {
+    display: flex;
+    gap: 2px;
+    height: 12px;
+    margin-left: var(--space-sm);
+}
+
+.ar-conf-segment {
+    width: 6px;
+    height: 100%;
+    background-color: var(--color-hud-dim);
+}
+
+.ar-conf-segment.filled {
+    background-color: var(--color-pure-white);
+}
+
+/* ── Top Right: Exit ── */
+.ar-exit-btn {
+    position: absolute;
+    top: var(--space-xl);
+    right: var(--space-xl);
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: var(--text-label);
+}
+.ar-exit-btn:hover {
+    background: rgba(255, 26, 26, 0.2);
+    border-color: var(--color-anantam-red);
+}
+
+/* ── Bottom Left: Gesture Hint ── */
+.ar-gesture-hint {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: var(--space-xl);
+    font-size: var(--text-label);
+    color: var(--color-hud-bright);
+}
+
+/* ── Bottom Right: Reset ── */
+.ar-reset-btn {
+    position: absolute;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: var(--text-label);
+}
+.ar-reset-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Center: Gesture Flash ── */
+.ar-gesture-flash {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    font-size: 1.5rem;
+    color: var(--color-pure-white);
+    text-shadow: 0 0 10px var(--color-anantam-red);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.ar-gesture-flash.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ── Modals ── */
+.ar-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-reveal) var(--ease-reveal);
+}
+.ar-modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ar-modal-content {
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid var(--color-anantam-red);
+    padding: var(--space-lg);
+    text-align: center;
+    max-width: 400px;
+    transform: scale(0.95);
+    transition: transform var(--dur-reveal) var(--ease-reveal);
+}
+.ar-modal-overlay.show .ar-modal-content {
+    transform: scale(1.0);
+}
+
+.ar-modal-title {
+    font-size: var(--text-heading);
+    color: var(--color-anantam-red);
+    margin-bottom: var(--space-md);
+}
+
+.ar-modal-body {
+    color: var(--color-hud-bright);
+    font-size: var(--text-body);
+    margin-bottom: var(--space-lg);
+    line-height: 1.5;
+}
+
+.ar-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.ar-btn {
+    background: transparent;
+    border: 1px solid var(--color-hud-dim);
+    color: var(--color-pure-white);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-technical);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.ar-btn.primary {
+    border-color: var(--color-anantam-red);
+    background: rgba(255, 26, 26, 0.1);
+}
+.ar-btn.primary:hover {
+    background: rgba(255, 26, 26, 0.3);
+}
+.ar-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulse-dot {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+}
