@@ -1,5 +1,5 @@
 import { AR_GESTURE_EVENTS } from '../gestures/ARGestureEngine.js';
-import { EVENTS, CAR_CMD } from '../../../shared/constants.js';
+import { EVENTS, CAR_CMD } from '../shared/constants.js';
 
 export class ARInteractionSystem {
     /**
